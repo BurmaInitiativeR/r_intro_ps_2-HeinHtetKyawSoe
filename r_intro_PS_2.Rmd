@@ -1,0 +1,62 @@
+---
+title: "r_intro PS 2"
+author: "Nicholus Tint Zaw"
+date: "2022-11-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+
+# Practice Summary Statistics with atomic vector 
+
+First thing first, you definitely need `tidyverse` pkg for this exercise. Don't forgot to load it at the top of your answer `rmd` file. 
+
+Let's go back to the previous exercise on implementation of the sampling distribution of the means. 
+
+
+2. Construct the list of 100 means values from the `Sepal.Length` and each mean value should construct from 10 sample sizes. (sample size = 10, replication 100 times)
+2. Assigned the result (vector with 100 numbers) as vector name called `means_list` and . 
+3. Construct the another vector called `test` and assigned `1` hundred time in that vector. Use `rep()` function for generation of same value for 100 times. 
+4. Then, using `cbind` function to combined those two vectors" `test` and `mean_list`, and treat the result as `data.frame` and assigned to the object name `mean_list_1`. You can try with below demo code. 
+
+```
+means_list_1 <- data.frame(cbind(number, mean_list))
+
+```
+
+Repeat the same process from numbers 1 to 4, but using different sample size and replication number this time. 
+
++ for `means_list_2`, using a sample size 30 and replication time 200. 
++ for `means_list_3`, using a sample size 50 and replication time 1,000.  
++ for `means_list_4`, using a sample size 50 and replication time 3,000.  
++ for `means_list_5`, using a sample size 50 and replication time 10,000.  
+
+
+This time, we are going to create the list to store all those `means_list_x` (where `x` `1:5`) and assigned that list as `means_seris`. 
+And, perform the following function from that list. 
+
+1. calculate the mean of `means_list_x` (where `x` `1:5`) from that list (using the command related to filtering list from lecture 2. 
+
+For example, if we use the following command, we can get the first dataframe. You work is to calculate the mean value of column `mean_list`. 
+
+```
+means_seris[[1]]
+```
+
+2. Using `bind_rows()` function to combined all dataset from `means_seris` and assigned into object called `df_means_combined`. Please make sure that your result dataset should have `14300` observations and 2 variables; `test` and `mean_list`. 
+
+3. Finally, calculate the mean value for each group of `test` using following example. In this exercise, we are going to use `group_by` function from the `tidyverse` packge and `%>%` operator (pipe operator). 
+
+```{r, message = FALSE}
+library(tidyverse)
+
+iris %>%
+  group_by(Species) %>%
+  summarise(mean = mean(Sepal.Length))
+
+```
